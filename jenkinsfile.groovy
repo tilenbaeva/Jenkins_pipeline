@@ -1,4 +1,4 @@
 node {
-    agent any
-    shell "echo Hello"
+    stage ("Pull git")
+    git "git@github.com:tilenbaeva/Website.git"
 }
