@@ -1,4 +1,6 @@
 node {
+    properties([parameters([string(defaultValue: '127.0.0.1', description: 'Please give IP to host a Website', name: 'DEVIP', trim: true)])])
+    
     stage ("Pull git") {
         git "git@github.com:tilenbaeva/Website.git"
     }
@@ -6,7 +8,7 @@ node {
     stage ("Install apache") {
         sh "ssh ec2-user@${DEVIP}   sudo yum install httpd -y"
     }
-    
+
     stage ("Start apache") {
         sh "ssh ec2-user@${DEVIP}   sudo systemctl start httpd" 
     }
